@@ -36,6 +36,7 @@ sizeBtn.addEventListener("click", () => {
     generateGrid(size);
   } else {
     alert("Size needs to be between 1 and 100");
+    size = 16; // default size
   }
 });
 
