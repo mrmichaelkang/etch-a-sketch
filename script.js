@@ -10,10 +10,26 @@ const classicToggle = document.createElement("input");
 const rgbLabel = document.createElement("label");
 const rgbToggle = document.createElement("input");
 const sidebar = document.createElement("div");
-const width = 500;
-const height = 500;
+const sizeLabel = document.createElement("label");
+let width = 500;
+let height = 500;
 let size = 16;
 let isDraggable = false;
+
+window.addEventListener("resize", () => {
+  console.log(window.innerWidth);
+  if (window.innerWidth < 650) {
+    width = 400;
+    height = 400;
+  } else {
+    width = 500;
+    height = 500;
+  }
+  grid.style.width = `${width}px`;
+  grid.style.height = `${height}px`;
+  removeGrid();
+  generateGrid(size);
+});
 
 sizeBtn.addEventListener("click", () => {
   size = parseInt(prompt("What size do you want the grid to be?"));
