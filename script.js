@@ -4,6 +4,7 @@ const header = document.createElement("header");
 const titleHeader = document.createElement("h1");
 const grid = document.createElement("div");
 const sizeBtn = document.createElement("button");
+const resetBtn = document.createElement("button");
 const fieldSet = document.createElement("fieldset");
 const classicLabel = document.createElement("label");
 const classicToggle = document.createElement("input");
@@ -25,10 +26,7 @@ window.addEventListener("resize", () => {
     width = 500;
     height = 500;
   }
-  grid.style.width = `${width}px`;
-  grid.style.height = `${height}px`;
-  removeGrid();
-  generateGrid(size);
+  reset();
 });
 
 sizeBtn.addEventListener("click", () => {
@@ -40,6 +38,8 @@ sizeBtn.addEventListener("click", () => {
     alert("Size needs to be between 1 and 100");
   }
 });
+
+resetBtn.addEventListener("click", reset);
 
 classicToggle.addEventListener("click", () => {
   rgbToggle.checked = false;
@@ -94,6 +94,13 @@ function removeGrid() {
   rows.forEach((row) => grid.removeChild(row));
 }
 
+function reset() {
+  grid.style.width = `${width}px`;
+  grid.style.height = `${height}px`;
+  removeGrid();
+  generateGrid(size);
+}
+
 function getRandomRGB() {
   const red = Math.floor(Math.random() * 256);
   const green = Math.floor(Math.random() * 256);
@@ -107,6 +114,7 @@ grid.style.height = `${height}px`;
 grid.style.border = "1px solid gray";
 titleHeader.textContent = "Etch a Sketch";
 sizeBtn.textContent = "Change Grid Size";
+resetBtn.textContent = "Reset";
 classicLabel.textContent = "Classic ";
 rgbLabel.textContent = "RGB ";
 sidebar.classList.add("sidebar");
@@ -117,6 +125,7 @@ rgbToggle.type = "radio";
 header.appendChild(titleHeader);
 main.appendChild(header);
 main.appendChild(sizeBtn);
+main.appendChild(resetBtn);
 classicLabel.appendChild(classicToggle);
 rgbLabel.appendChild(rgbToggle);
 fieldSet.appendChild(classicLabel);
